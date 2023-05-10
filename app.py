@@ -10,7 +10,7 @@ from models import Generator
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 netG = Generator(4)
-netG.load_state_dict(torch.load('models/netG2_epoch250.pt', map_location=device))
+netG.load_state_dict(torch.load('models/netG2_epoch1000.pt', map_location=device))
 netG.to(device)
 
 # Define the image transform
@@ -23,13 +23,9 @@ def app():
     st.title("Super Resolution App")
     st.write("Upload an image and generate a super resolution image.")
     
-    #model_choice = st.radio("", ["SRGAN", "ESRGAN"], format="auto")
     # Upload an image
     file = st.file_uploader("Choose an image file", type=["jpg", "jpeg", "png"])
     
-    #netG = torch.load('netG3_epoch50.pt', map_location=device)
-    #netG.to(device)
-
     # When an image is uploaded
     if file is not None:
         # Read the uploaded image
